@@ -17,7 +17,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/memo_textedit"
+        android:id="@+id/memo_edittext"
         android:layout_width="303dp"
         android:layout_height="181dp"
         android:layout_marginStart="4dp"
@@ -40,8 +40,8 @@
         android:text="送信"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/memo_textedit"
-        app:layout_constraintTop_toTopOf="@+id/memo_textedit" />
+        app:layout_constraintStart_toEndOf="@+id/memo_edittext"
+        app:layout_constraintTop_toTopOf="@+id/memo_edittext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
