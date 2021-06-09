@@ -16,9 +16,17 @@ class TopicsRepository(private val database: TopicsDatabase) {
     }
 
     // databaseにinsertする
-    suspend fun insertTopics(topicBeans: List<InputTopicBean>) {
+    private suspend fun insertTopics(topicBeans: List<InputTopicBean>) {
         withContext(Dispatchers.IO) {
             database.topicDao.insertAll(topicBeans.asDatabaseModel())
         }
+    }
+
+    /**
+     * 新しいtopicsを保存する
+     */
+    suspend fun addNewTopics(newTopics: List<InputTopicBean>){
+        // databaseに保存する
+        insertTopics(newTopics)
     }
 }

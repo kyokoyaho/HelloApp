@@ -1,9 +1,6 @@
 package com.android.example.helloapp.domain
 
 import com.android.example.helloapp.database.TopicEntity
-import com.android.example.helloapp.repository.TopicsRepository
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 data class OutputTopicBean(
     var topicId: Long,
@@ -39,16 +36,5 @@ fun List<InputTopicBean>.asDatabaseModel(): List<TopicEntity> {
         TopicEntity(
             note = it.note
         )
-    }
-}
-
-/**
- * 新しいtopicを保存する
-  */
-fun addNewTopics(topicsRepository: TopicsRepository, newTopics: List<InputTopicBean>){
-    // databaseに保存する
-    // TODO スコープ用検討
-    GlobalScope.launch {
-        topicsRepository.insertTopics(newTopics)
     }
 }
