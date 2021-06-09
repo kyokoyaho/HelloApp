@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.android.example.helloapp.database.getDatabase
 import com.android.example.helloapp.databinding.FragmentHomeBinding
 import com.android.example.helloapp.domain.InputTopicBean
@@ -22,6 +23,9 @@ class HomeFragment : Fragment() {
     private lateinit var topicsRepository: TopicsRepository
     private lateinit var topics: LiveData<List<OutputTopicBean>>
 
+    private lateinit var viewModel: HomeViewModel
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,6 +36,8 @@ class HomeFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater,
             R.layout.fragment_home,container,false)
+
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         this.topics.observe(viewLifecycleOwner, Observer<List<OutputTopicBean>> { newTopics ->
             Timber.i("★★" + newTopics.toString())

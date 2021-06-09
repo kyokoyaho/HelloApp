@@ -53,6 +53,9 @@ dependencies {
     // Timber (logger)
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    //ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
     // coroutines
     def coroutines = "1.2.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
