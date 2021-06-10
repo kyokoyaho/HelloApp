@@ -35,4 +35,10 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
             topicsRepository.addNewTopics(newTopics)
         }
     }
+
+    fun removeTopic(topicId: Long){
+        viewModelScope.launch {
+            topicsRepository.removeTopic(topicId)
+        }
+    }
 }

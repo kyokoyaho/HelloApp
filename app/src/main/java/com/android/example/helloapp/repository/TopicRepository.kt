@@ -21,6 +21,12 @@ class TopicsRepository(private val database: TopicsDatabase) {
             database.topicDao.insertAll(topicBeans.asDatabaseModel())
         }
     }
+    // databaseから指定のtopicをdeleteする
+    private suspend fun deleteTopic(topicId: Long){
+        withContext(Dispatchers.IO) {
+            database.topicDao.deleteTopic(topicId)
+        }
+    }
 
     /**
      * 新しいtopicsを保存する
@@ -28,5 +34,12 @@ class TopicsRepository(private val database: TopicsDatabase) {
     suspend fun addNewTopics(newTopics: List<InputTopicBean>){
         // databaseに保存する
         insertTopics(newTopics)
+    }
+
+    /**
+     * 指定のTopicを削除する
+     */
+    suspend fun removeTopic(topicId: Long){
+        deleteTopic(topicId)
     }
 }

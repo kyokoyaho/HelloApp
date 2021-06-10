@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         // RecyclerViewのアダプターを設定
-        val adapter = TopicAdapter()
+        val adapter = TopicAdapter(viewModel)
         binding.topicList.adapter = adapter
 
         // ViewModel内の変数を監視する

@@ -11,4 +11,7 @@ interface TopicDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll( videos: List<TopicEntity>)
+
+    @Query("DELETE FROM topic_table WHERE topicId = :topicId")
+    fun deleteTopic(topicId: Long)
 }
