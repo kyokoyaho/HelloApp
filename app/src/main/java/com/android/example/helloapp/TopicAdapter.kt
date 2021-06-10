@@ -21,10 +21,7 @@ class TopicAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
     // このメソッドは、ViewHolder とそれに関連する View を作成して初期化しますが、
     // ビューのコンテンツは埋めません（ViewHolder はこの時点で特定のデータにバインドされていません）。
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater
-            .inflate(R.layout.text_item_view, parent, false)
-        return TextItemViewHolder(view)
+        return TextItemViewHolder.from(parent)
     }
 
     // RecyclerView はこのメソッドを呼び出して、ViewHolder をデータに関連付けます。
@@ -46,6 +43,15 @@ class TextItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     fun bind(item: OutputTopicBean) {
         note.text = item.note
         created.text = formatMilliToDateString(item.created)
+    }
+
+    companion object {
+        fun from(parent: ViewGroup): TextItemViewHolder {
+            val layoutInflater = LayoutInflater.from(parent.context)
+            val view = layoutInflater
+                .inflate(R.layout.text_item_view, parent, false)
+            return TextItemViewHolder(view)
+        }
     }
 }
 
