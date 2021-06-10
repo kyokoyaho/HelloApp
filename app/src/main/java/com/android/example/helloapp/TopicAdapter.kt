@@ -33,14 +33,19 @@ class TopicAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
     // このメソッドはリストの中から適切な名前を見つけて、ビューホルダーの TextView ウィジェットを埋めます。
     override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
         val item = data[position]
-        holder.note.text = item.note
-        holder.created.text = formatMilliToDateString(item.created)
+        holder.bind(item)
 
         Timber.i("★item.toString() = ${item.toString()}")
     }
 }
 
 class TextItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-    val note: TextView = itemView.findViewById(R.id.note)
-    val created: TextView = itemView.findViewById(R.id.created)
+    private val note: TextView = itemView.findViewById(R.id.note)
+    private val created: TextView = itemView.findViewById(R.id.created)
+
+    fun bind(item: OutputTopicBean) {
+        note.text = item.note
+        created.text = formatMilliToDateString(item.created)
+    }
 }
+
