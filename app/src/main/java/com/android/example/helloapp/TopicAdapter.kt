@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.helloapp.domain.OutputTopicBean
+import timber.log.Timber
 
 class TopicAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
     var data =  listOf<OutputTopicBean>()
@@ -31,6 +32,8 @@ class TopicAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
     // このメソッドはリストの中から適切な名前を見つけて、ビューホルダーの TextView ウィジェットを埋めます。
     override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
         val item = data[position]
+        holder.textView.text = item.toString()
+        Timber.i("★item.toString() = ${item.toString()}")
     }
 }
 

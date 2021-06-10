@@ -35,8 +35,8 @@ class HomeFragment : Fragment() {
 
         // ViewModel内の変数を監視する
         viewModel.topics.observe(viewLifecycleOwner, Observer<List<OutputTopicBean>> {
-            Timber.i("★★" + it.toString())
             it?.let {
+                // RecyclerViewのデータを更新
                 adapter.data = it
             }
             // topic_tableのデータを画面に表示する
