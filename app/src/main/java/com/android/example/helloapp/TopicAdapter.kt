@@ -1,6 +1,7 @@
 package com.android.example.helloapp
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,7 @@ class TopicAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater
-            .inflate(R.layout.text_item_view, parent, false) as TextView
+            .inflate(R.layout.text_item_view, parent, false)
         return TextItemViewHolder(view)
     }
 
@@ -32,11 +33,14 @@ class TopicAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
     // このメソッドはリストの中から適切な名前を見つけて、ビューホルダーの TextView ウィジェットを埋めます。
     override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
         val item = data[position]
-        holder.textView.text = item.toString()
+        holder.note.text = item.note
+        holder.created.text = formatMilliToDateString(item.created)
+
         Timber.i("★item.toString() = ${item.toString()}")
     }
 }
 
-class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView){
-
+class TextItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    val note: TextView = itemView.findViewById(R.id.note)
+    val created: TextView = itemView.findViewById(R.id.created)
 }
