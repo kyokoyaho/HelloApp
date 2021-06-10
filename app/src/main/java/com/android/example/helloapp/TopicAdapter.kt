@@ -4,18 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.helloapp.domain.OutputTopicBean
 import timber.log.Timber
 
-class TopicAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
-    var data =  listOf<OutputTopicBean>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount(): Int = data.size
+class TopicAdapter: ListAdapter<OutputTopicBean, TextItemViewHolder>(TopicDiffCallback()) {
 
     // RecyclerView は、新しい ViewHolder を作成する必要があるたびにこのメソッドを呼び出します。
     // このメソッドは、ViewHolder とそれに関連する View を作成して初期化しますが、
@@ -29,7 +24,7 @@ class TopicAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
     // たとえば、RecyclerView が名前のリストを表示する場合、
     // このメソッドはリストの中から適切な名前を見つけて、ビューホルダーの TextView ウィジェットを埋めます。
     override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
 
         Timber.i("★item.toString() = ${item.toString()}")
@@ -52,6 +47,17 @@ class TextItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
                 .inflate(R.layout.text_item_view, parent, false)
             return TextItemViewHolder(view)
         }
+    }
+}
+
+
+class TopicDiffCallback : DiffUtil.ItemCallback<OutputTopicBean>() {
+    override fun areItemsTheSame(oldItem: OutputTopicBean, newItem: OutputTopicBean): Boolean {
+        return oldItem.topicId == newItem.topicId
+    }
+
+    override fun areContentsTheSame(oldItem: OutputTopicBean, newItem: OutputTopicBean): Boolean {
+        return oldItem == newItem
     }
 }
 

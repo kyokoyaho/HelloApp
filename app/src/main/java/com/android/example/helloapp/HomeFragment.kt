@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         viewModel.topics.observe(viewLifecycleOwner, Observer<List<OutputTopicBean>> {
             it?.let {
                 // RecyclerViewのデータを更新
-                adapter.data = it
+                adapter.submitList(it)
             }
             // topic_tableのデータを画面に表示する
 //            var outputText = StringBuilder()
