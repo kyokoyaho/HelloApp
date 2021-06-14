@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.android.example.helloapp.databinding.FragmentHomeBinding
 import com.android.example.helloapp.domain.InputTopicBean
 import com.android.example.helloapp.domain.OutputTopicBean
-import timber.log.Timber
 
 class HomeFragment : Fragment() {
 
@@ -33,7 +33,18 @@ class HomeFragment : Fragment() {
         val adapter = TopicAdapter(viewModel)
         binding.topicList.adapter = adapter
 
-        // ViewModel内の変数を監視する
+        // binding
+        binding.viewModel = viewModel
+
+        // ViewModelクラスを監視する
+        viewModel.navigateToAddTopic.observe(viewLifecycleOwner,
+            { navigate ->
+                if(navigate) {
+                    // AddTopic画面へ遷移
+                    findNavController().navigate(R.id.action_homeFragment_to_addTopicFragment)
+                    viewModel.onNavigateToAddTopic()
+                }
+            })
         viewModel.topics.observe(viewLifecycleOwner, Observer<List<OutputTopicBean>> {
             it?.let {
                 // RecyclerViewのデータを更新
