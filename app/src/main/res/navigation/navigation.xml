@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.android.example.helloapp.HomeFragment"
+        android:name="com.android.example.helloapp.home.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_addTopicFragment"

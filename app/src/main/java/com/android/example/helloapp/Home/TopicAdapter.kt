@@ -1,4 +1,4 @@
-package com.android.example.helloapp
+package com.android.example.helloapp.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.example.helloapp.domain.InputTopicBean
+import com.android.example.helloapp.R
 import com.android.example.helloapp.domain.OutputTopicBean
+import com.android.example.helloapp.formatMilliToDateString
 import timber.log.Timber
 
-class TopicAdapter(private val viewModel :HomeViewModel): ListAdapter<OutputTopicBean, TextItemViewHolder>(TopicDiffCallback()) {
+class TopicAdapter(private val viewModel : HomeViewModel): ListAdapter<OutputTopicBean, TextItemViewHolder>(
+    TopicDiffCallback()
+) {
 
     // RecyclerView は、新しい ViewHolder を作成する必要があるたびにこのメソッドを呼び出します。
     // このメソッドは、ViewHolder とそれに関連する View を作成して初期化しますが、
@@ -38,7 +41,7 @@ class TextItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     private val note: TextView = itemView.findViewById(R.id.note)
     private val created: TextView = itemView.findViewById(R.id.created)
 
-    fun bind(item: OutputTopicBean, viewModel :HomeViewModel) {
+    fun bind(item: OutputTopicBean, viewModel : HomeViewModel) {
         topicId = item.topicId
         note.text = item.note
         created.text = formatMilliToDateString(item.created)

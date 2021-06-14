@@ -1,4 +1,4 @@
-package com.android.example.helloapp
+package com.android.example.helloapp.home
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

@@ -1,4 +1,4 @@
-package com.android.example.helloapp
+package com.android.example.helloapp.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.android.example.helloapp.R
 import com.android.example.helloapp.databinding.FragmentHomeBinding
 import com.android.example.helloapp.domain.InputTopicBean
 import com.android.example.helloapp.domain.OutputTopicBean
+import com.android.example.helloapp.hideKeyboard
 
 class HomeFragment : Fragment() {
 
