@@ -39,12 +39,6 @@ class HomeFragment : Fragment() {
                 // RecyclerViewのデータを更新
                 adapter.submitList(it)
             }
-            // topic_tableのデータを画面に表示する
-//            var outputText = StringBuilder()
-//            newTopics.forEach(){
-//                outputText.insert(0, "${it.toString()}\n\n")
-//            }
-//            binding.outputMemo.text = outputText.toString()
         })
 
         // 送信ボタン押下時の処理
