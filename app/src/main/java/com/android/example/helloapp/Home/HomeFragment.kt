@@ -54,16 +54,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-        // 送信ボタン押下時の処理
-        binding.submitButton.setOnClickListener { view ->
-            viewModel.addNewTopics(listOf(
-                InputTopicBean(note = binding.memoEdittext.text.toString())
-            ))
-            // 入力フォームを空にする
-            binding.memoEdittext.text.clear()
-            // キーボードを非表示にする
-            hideKeyboard(activity, view)
-        }
         return binding.root
     }
 }

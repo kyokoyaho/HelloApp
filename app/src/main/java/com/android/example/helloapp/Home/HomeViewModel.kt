@@ -41,15 +41,8 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     }
 
     /**
-     * 送信ボタン押下時の処理
+     * Topicの削除処理
      */
-    fun addNewTopics(newTopics: List<InputTopicBean>){
-        // 新しいtopicsを保存する
-        viewModelScope.launch {
-            topicsRepository.addNewTopics(newTopics)
-        }
-    }
-
     fun removeTopic(topicId: Long){
         viewModelScope.launch {
             topicsRepository.removeTopic(topicId)
