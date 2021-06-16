@@ -22,4 +22,9 @@
             android:id="@+id/action_addTopicFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.android.example.helloapp.setting.SettingFragment"
+        android:label="setting_fragment"
+        tools:layout="@layout/setting_fragment" />
 </navigation>
